@@ -14,7 +14,7 @@ for i = 1:columns
 end
         
 Columns_Parity_bits = Columns_Parity_bits(2:end);% - matlab_to_cpp;
-% position_Columns = position_Columns-matlab_to_cpp;
+position_Columns = position_Columns;%-matlab_to_cpp;
 
 Rows_Parity_bits = 0;
 position_Rows = zeros(1,rows);
@@ -26,4 +26,4 @@ for i = 1:rows
 end
 
 Rows_Parity_bits  = Rows_Parity_bits (2:end);% - matlab_to_cpp;
-% position_Rows = position_Rows - matlab_to_cpp;
+position_Rows = position_Rows;% - matlab_to_cpp;

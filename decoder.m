@@ -1,9 +1,8 @@
 function [initial_word] = decoder(received_message, parity_rows, parity_columns, position_rows,...
     position_columns, noise_var)
 
-
-size_message = length(received_message);
 size_parity = length(parity_columns);
+size_message = length(received_message);
 
 initial_word = zeros(size_message,1);
 initial_decoded_message = zeros(size_message,1);
@@ -23,7 +22,7 @@ for i=1:size_parity
     q1(i) = initial_decoded_message(temp);
     q0(i) = 1 - q1(i);
 end
-a = 5;
+a = 4;
 while a >0
     
     row_nodes = ones(length(position_rows),1);
@@ -76,9 +75,11 @@ while a >0
             if (k ~= column_nodes(position_of_parity))
                 temp0 = temp0 * vector_with_r0(k);
                 temp1 = temp1 * vector_with_r1(k);
-%                 if temp1 < 1e-03
+                 if temp1 < 1e-06 && temp0 < 1e-06
+                     temp1 = temp1*10e+06;
+                     temp0 = temp0*10e+06;
 %                     b = b +1;
-%                 end
+                 end
 %                 if b > 10
 %                     aa = 0;
 %                 end
