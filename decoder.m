@@ -68,9 +68,7 @@ while a >0
             vector_with_r1(j+1) = r1(this_parity + j);
             vector_with_r0(j+1) = r0(this_parity + j);
         end
-%         vector_with_r1 = vector_with_r1/min(vector_with_r1);
-%         vector_with_r0 = vector_with_r0/min(vector_with_r0);
-        temp0 = 1; temp1 = 1; temp = 1; b = 0;
+        temp0 = 1; temp1 = 1; temp = 1;
         for k=1:length_of_parity
             if (k ~= column_nodes(position_of_parity))
                 temp0 = temp0 * vector_with_r0(k);
@@ -78,11 +76,7 @@ while a >0
                  if temp1 < 1e-06 && temp0 < 1e-06
                      temp1 = temp1*10e+06;
                      temp0 = temp0*10e+06;
-%                     b = b +1;
                  end
-%                 if b > 10
-%                     aa = 0;
-%                 end
                 temp = temp*temp1/temp0;
             end
         end
@@ -128,7 +122,6 @@ while a >0
         end
     end
 a = a -1;
-disp(sum(initial_word))
 end
 end
 

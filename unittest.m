@@ -113,8 +113,6 @@ position_rows = position_Rows;
 position_columns = position_Columns;
 parities_columns = Columns_Parity_bits;
 received_word = bpsk + normrnd(0,0.2,1,length(bpsk));
-[initial_message1, initial_message2] = decoder(received_word, parities_rows, parities_columns, position_rows, position_columns, 0.2);
-test1 = initial_word == initial_message1';
-test2 = initial_word == initial_message2';
-test = [sum(test1), sum(test2)];
-disp(test)
+[initial_message] = decoder(received_word, parities_rows, parities_columns, position_rows, position_columns, 0.2);
+test = initial_word == initial_message(1:4096)';
+disp(sum(test))
