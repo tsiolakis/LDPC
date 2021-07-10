@@ -63,9 +63,10 @@
 %     end
 % end
 % received_word = bpsk + normrnd(0,0.1,1,length(bpsk));
-% initial_word = decoder(received_word, parities_rows, parities_columns, position_rows, position_columns, 0.1);
+% [initial_word,a] = decoder(received_word, parities_rows, parities_columns, position_rows, position_columns, 0.1);
 % test = initial_word == codeword';
 % disp(test)
+% disp(a)
 % paritiesForDecoder
 % 
 % parities_rows = Rows_Parity_bits;
@@ -95,10 +96,11 @@ GeneratorMatrix
 encoded_word = initial_word*Generator_Matrix;
 encoded_word = mod(encoded_word,2);
  
-paritiesForEncoder
-
-encoded = encoder(initial_word, Rows_Parity_bits, position_Rows, 32, 8, 128);
-
+% paritiesForEncoder
+% 
+% encoded = encoder(initial_word, Rows_Parity_bits, position_Rows, 32, 8, 128);
+% 
+% test1 = sum(encoded_word==encoded');
 paritiesForDecoder
 
 bpsk = ones(size(encoded_word));
@@ -113,6 +115,7 @@ position_rows = position_Rows;
 position_columns = position_Columns;
 parities_columns = Columns_Parity_bits;
 received_word = bpsk + normrnd(0,0.2,1,length(bpsk));
-[initial_message] = decoder(received_word, parities_rows, parities_columns, position_rows, position_columns, 0.2);
+[initial_message,a] = decoder(received_word, parities_rows, parities_columns, position_rows, position_columns, 0.2);
 test = initial_word == initial_message(1:4096)';
 disp(sum(test))
+disp(a)
