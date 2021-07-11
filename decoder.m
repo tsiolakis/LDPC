@@ -1,4 +1,4 @@
-function [initial_word,a] = decoder(received_message, parity_rows, parity_columns, position_rows,...
+function [initial_word] = decoder(received_message, parity_rows, parity_columns, position_rows,...
     position_columns, noise_var)
 
 size_parity = length(parity_columns);
@@ -22,9 +22,8 @@ for i=1:size_parity
     q1(i) = initial_decoded_message(temp);
     q0(i) = 1 - q1(i);
 end
-a = 0;
-b = 4;
-while decoder_check(initial_word,parity_rows, position_rows,a)    %a >0
+
+while decoder_check(initial_word,parity_rows, position_rows)
     
     row_nodes = ones(length(position_rows),1);
     column_nodes = ones(length(position_columns),1);
@@ -122,9 +121,6 @@ while decoder_check(initial_word,parity_rows, position_rows,a)    %a >0
             initial_word(i) = 0;
         end
     end
-a = a +1;
-b = b - 1 ;
-% disp(a)
 end
 end
 

@@ -1,4 +1,4 @@
-function [continue_decoding] = decoder_check(decoded_message, parity_rows, position_rows, limit)
+function [continue_decoding] = decoder_check(decoded_message, parity_rows, position_rows)
 
 total_sum = 0;
 for i = 1:length(position_rows)
@@ -8,9 +8,6 @@ for i = 1:length(position_rows)
         position_of_parities = parity_rows(position_rows(i):end);
     end
     total_sum = total_sum + mod(sum(decoded_message(position_of_parities)),2);
-    if total_sum ~= 0 && limit == 4
-        aaa = 0;
-    end
 end
 if total_sum ~= 0
     continue_decoding = true;
