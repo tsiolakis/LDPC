@@ -1,21 +1,21 @@
 %  parities = [1, 3, 4, 6, 8 1 2 7];
-%  position = [1 4 6 8];
-% %hex2binary
-%  rows = 2;
-%  columns = 2;
-%  word = (rand(8,1) > 0.5)';
-%  G = [1 0 1 1 0 1 0 1; 1 1 0 1 1 0 1 0; 1 1 1 0 0 1 0 1; 0 1 1 1 1 0 1 0; 1 1 0 0 0 0 1 0; 0 1 1 0 0 0 0 1; 0 0 1 1 1 0 0 0; 1 0 0 1 0 1 0 0];
+%   position = [1 4 6 8];
+% % %hex2binary
+%   rows = 2;
+%   columns = 2;
+%   word = (rand(8,1) > 0.5)';
+%   G = [1 0 1 1 0 1 0 1; 1 1 0 1 1 0 1 0; 1 1 1 0 0 1 0 1; 0 1 1 1 1 0 1 0; 1 1 0 0 0 0 1 0; 0 1 1 0 0 0 0 1; 0 0 1 1 1 0 0 0; 1 0 0 1 0 1 0 0];
 % %G = Generator_Matrix;
 % %parities = Rows_Parity_bits;
 % %position = position_Rows;
-%  block = 4;
-%  expectedCodeword = word*G;
-%  expectedCodeword = mod(expectedCodeword, 2)';
+  block = 4;
+  expectedCodeword = word*G;
+  expectedCodeword = mod(expectedCodeword, 2)';
 %  expectedCodeword = expectedCodeword(4097:end);
-%  outCodeword = encoder(word, parities,position, rows, columns, block);
+  outCodeword = encoder(word, parities,position, rows, columns, block);
 % 
-%  test = outCodeword == expectedCodeword;
-%  disp(sum(test))
+  test = outCodeword == expectedCodeword;
+  disp(sum(test))
 % % %disp(test)
 % % if (sum(test)~= length(test))
 % %     disp('ERROR in Encoder')
@@ -48,24 +48,24 @@
 % disp(test)
 % return
 % H = [1 1 1 0; 0 1 0 1];
-parities_rows = [1 2 3 2 4];
-position_rows = [1 4];
-parities_columns = [1 1 2 1 2];
-position_columns = [1 2 4 5];
-
-G = [1 0 1 0; 0 1 1 1];
-w = [1 0];
-codeword = w*G;
-bpsk = ones(size(codeword));
-for i = 1:length(codeword)
-    if codeword(i) == 0
-        bpsk(i) = -1;
-    end
-end
-received_word = bpsk + normrnd(0,0.1,1,length(bpsk));
-initial_word = decoder(received_word, parities_rows, parities_columns, position_rows, position_columns, 0.1);
-test = initial_word == codeword';
-disp(test)
+% parities_rows = [1 2 3 2 4];
+% position_rows = [1 4];
+% parities_columns = [1 1 2 1 2];
+% position_columns = [1 2 4 5];
+% 
+% G = [1 0 1 0; 0 1 1 1];
+% w = [1 0];
+% codeword = w*G;
+% bpsk = ones(size(codeword));
+% for i = 1:length(codeword)
+%     if codeword(i) == 0
+%         bpsk(i) = -1;
+%     end
+% end
+% received_word = bpsk + normrnd(0,0.1,1,length(bpsk));
+% initial_word = decoder(received_word, parities_rows, parities_columns, position_rows, position_columns, 0.1);
+% test = initial_word == codeword';
+% disp(test)
 % disp(a)
 % paritiesForDecoder
 % 
