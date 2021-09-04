@@ -1,6 +1,6 @@
 GeneratorMatrix
 
-matlab_to_cpp = 1;
+matlab_to_cpp = 0;
 
 [rows, columns] = size(H);
 
