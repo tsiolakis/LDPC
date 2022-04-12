@@ -13,7 +13,7 @@ end
 q0 = zeros(size_parity,1);
 q1 = zeros(size_parity,1);
 Q0 = zeros(size_message,1);
-Q1 = zeros(size_message,1);
+Q1 = initial_decoded_message;
 r0 = zeros(size_parity,1);
 r1 = zeros(size_parity,1);
 
@@ -22,8 +22,8 @@ for i=1:size_parity
     q1(i) = initial_decoded_message(temp);
     q0(i) = 1 - q1(i);
 end
-
-while decoder_check(initial_word,parity_rows, position_rows)
+counter = 0;
+while decoder_check(initial_word,parity_rows, position_rows) && counter < 25
     
     row_nodes = ones(length(position_rows),1);
     column_nodes = ones(length(position_columns),1);
@@ -54,7 +54,7 @@ while decoder_check(initial_word,parity_rows, position_rows)
     end
     for i=1:size_parity
         position_of_parity = parity_rows(i);
-        possibility_1 = initial_decoded_message(position_of_parity);
+        possibility_1 = Q1(position_of_parity);
         this_parity = position_columns(position_of_parity);
         if this_parity ~= position_columns(end)
             next_parity = position_columns(position_of_parity + 1);
@@ -88,9 +88,8 @@ while decoder_check(initial_word,parity_rows, position_rows)
         q1(i) = q1(i)*K;  
     end
     for i=1:size_message
-        position_of_parity = parity_rows(i);
         this_parity = position_columns(i);
-        possibility_1 = initial_decoded_message(position_of_parity);
+        possibility_1 = Q1(i);
         if this_parity~= position_columns(end)
             next_parity = position_columns(i+1);
             length_of_parity = next_parity - this_parity;
@@ -121,6 +120,7 @@ while decoder_check(initial_word,parity_rows, position_rows)
             initial_word(i) = 0;
         end
     end
+    counter = counter + 1;
 end
 end
 
