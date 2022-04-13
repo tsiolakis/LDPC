@@ -10,7 +10,7 @@ for i=1:length(stringData)
     a = hexToBinaryVector(stringData(i));
     size_vector(i) = length(a);
     zero_padding = 64-size_vector(i);
-    binary_matrix(i,:) = [zeros(1,zero_padding),a];
+    binary_matrix(i,:) = [zeros(1,zero_padding), a];
 end
 
 

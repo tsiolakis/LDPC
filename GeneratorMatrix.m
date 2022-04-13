@@ -17,7 +17,7 @@ Parity = zeros(4096, 1024);
 
 for i = 1:32
     for j = 1:8
-        Parity(((i-1)*128+1:i*128),((j-1)*128+1:j*128)) = B(:,:,(i-1)*8 + j);
+        Parity(((i-1)*size_quasi_cycle+1:i*size_quasi_cycle),((j-1)*size_quasi_cycle+1:j*size_quasi_cycle)) = B(:,:,(i-1)*8 + j);
     end
 end
 
