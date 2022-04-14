@@ -1,6 +1,6 @@
 hex2binary
 
-matlab_to_cpp = 1;
+matlab_to_cpp = 0;
 block_column = 8;
 block_row = 32;
 size_quasi_cycle = 128;
