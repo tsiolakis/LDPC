@@ -12,9 +12,4 @@ for i=1:length(stringData)
     zero_padding = 64-size_vector(i);
     binary_matrix(i,:) = [zeros(1,zero_padding), a];
 end
-
-
-final_binary_matrix = zeros(size(binary_matrix,1)/2, size(binary_matrix,2)*2);
-for i = 1:2:size(binary_matrix,1)
-    final_binary_matrix(ceil(i/2),:) = [binary_matrix(i,:), binary_matrix(i+1,:)];
-end
+dlmwrite("binary_matrix.txt", binary_matrix)
